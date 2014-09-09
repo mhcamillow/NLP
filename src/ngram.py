@@ -31,9 +31,6 @@ class NLP():
     codif = 'utf-8'
     return normalize('NFKD', texto.decode(codif)).encode('ASCII', 'ignore').lower()
 
-  def possible_words(self, w1, w2):
-    return self.train(self.trigram(self.lista, w1, w2))
-
 #Example:
 a = NLP()
 print(dict(a.ngram(['you'])))
