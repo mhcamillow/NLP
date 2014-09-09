@@ -7,7 +7,7 @@ import re, collections
 class NLP():
 
   def __init__(self):
-    self.texto = self.removeacentos(file('/home/camillo/src/trainingset.txt').read())
+    self.texto = self.removeacentos(file('trainingset.txt').read())
     self.lista = re.findall(r'[a-zA-Z]+', self.texto)
 
   def bigram(self, lista, w):
