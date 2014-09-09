@@ -33,5 +33,5 @@ class SpellingCorrector(object):
     return max(candidates, key=self.NWORDS.get)
 
 #Exemplo:
-#a = SpellingCorrector()
-#print(a.correct('monstros'))
+#spellingCorrector = SpellingCorrector()
+#print(spellingCorrector.correct('monstros'))
