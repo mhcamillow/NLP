@@ -32,5 +32,6 @@ class SpellingCorrector(object):
     candidates = self.known([word]) or self.known(self.edits1(word)) or self.known_edits2(word) or [word]
     return max(candidates, key=self.NWORDS.get)
 
-a = SpellingCorrector()
-print(a.correct('monstros'))
+#Exemplo:
+#spellingCorrector = SpellingCorrector()
+#print(spellingCorrector.correct('monstros'))
