@@ -1,4 +1,3 @@
-#Define o tipo do arquivo como UTF-8 - pra nao dar pau com acentos
 # -*- coding: utf-8 -*-
 
 from unicodedata import normalize
