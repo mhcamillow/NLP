@@ -3,26 +3,23 @@
 from unicodedata import normalize
 import re, collections
 
-#Primeira tentativa de trabalhar com n-gramas
 class NLP():
 
   def __init__(self):
-    self.texto = self.removeacentos(file('trainingset.txt').read())
+    self.texto = self.normalize_text(file('big.txt').read())
     self.lista = re.findall(r'[a-zA-Z]+', self.texto)
 
-  def bigram(self, lista, w):
-    r = []
-    for idx, word in enumerate(lista):
-      if (lista[idx-1] == w):
-        r.append(word)
-    return r
-  #Melhorar isso aqui. Dá pra fazer um metodo só que aceite n-gramas
-  def trigram(self, lista, w1, w2):
-    r = []
-    for idx, word in enumerate(lista):
-      if (lista[idx-2] == w1) and (lista[idx-1] == w2):
-        r.append(word)
-    return r
+  def ngram(self, previous_words):
+    possible_words = collections.defaultdict(lambda: 0)
+
+    for i, known_word in enumerate(self.lista):
+      for x, previous_word in enumerate(previous_words):
+        if (previous_word.lower() != self.lista[i + x]):
+          break;
+      else:
+        possible_words[self.lista[i + len(previous_words)]] += 1
+
+    return possible_words
 
   def train(self, lista):
     r = collections.defaultdict(lambda: 0)
@@ -30,12 +27,13 @@ class NLP():
       r[word] += 1
     return r
 
-  def removeacentos(self, texto):
+  def normalize_text(self, texto):
     codif = 'utf-8'
-    return normalize('NFKD', texto.decode(codif)).encode('ASCII', 'ignore')	
+    return normalize('NFKD', texto.decode(codif)).encode('ASCII', 'ignore').lower()
 
-  def Consulta(self, w1, w2):
+  def possible_words(self, w1, w2):
     return self.train(self.trigram(self.lista, w1, w2))
 
-  def Consulta2(self, w1):
-    return self.train(self.bigram(self.lista, w1))
+#Example:
+a = NLP()
+print(dict(a.ngram(['you'])))
