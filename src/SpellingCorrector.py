@@ -3,7 +3,7 @@ import re, collections
 class SpellingCorrector(object):
   
   def __init__(self):
-    self.NWORDS = self.train(self.words(file('big.txt').read()))
+    self.NWORDS = self.train(self.words(open('big.txt').read()))
     self.alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
   def words(self, text):
@@ -33,5 +33,5 @@ class SpellingCorrector(object):
     return max(candidates, key=self.NWORDS.get)
 
 #Exemplo:
-#spellingCorrector = SpellingCorrector()
-#print(spellingCorrector.correct('monstros'))
+spellingCorrector = SpellingCorrector()
+print(spellingCorrector.correct('monstros'))

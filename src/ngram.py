@@ -6,7 +6,7 @@ import re, collections
 class NLP():
 
   def __init__(self):
-    self.text = self.normalize_text(file('big.txt').read())
+    self.text = self.normalize_text(open('big.txt', encoding='ASCII').read())
     self.known_words = re.findall(r'[a-zA-Z]+', self.text)
 
   def ngram(self, previous_words):
@@ -23,7 +23,7 @@ class NLP():
 
   def normalize_text(self, text):
     codif = 'utf-8'
-    return normalize('NFKD', text.decode(codif)).encode('ASCII', 'ignore').lower()
+    return normalize('NFKD', text).lower()
 
 #Example:
 a = NLP()
