@@ -26,5 +26,5 @@ class NLP():
     return normalize('NFKD', text).lower()
 
 #Example:
-a = NLP()
-print(dict(a.ngram(['the', 'king'])))
+#a = NLP()
+#print(dict(a.ngram(['the', 'king'])))
